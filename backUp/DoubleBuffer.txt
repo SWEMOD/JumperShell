@@ -1,0 +1,19 @@
+$doubleBufferedProperty = $window.GetType().GetProperty("DoubleBuffered", [Reflection.BindingFlags] "Instance, NonPublic")
+$doubleBufferedProperty.SetValue($window, $true, $null)
+$backBuffer = New-Object System.Drawing.Bitmap $window_Width, $window_Height
+
+
+$window.Add_Paint({
+    param($sender, $e)
+    $gfx = [System.Drawing.Graphics]::FromImage($backBuffer) # <-- Background
+    $gfx.DrawImage($window_Background_1, 0, 0)
+
+    # Draw platforms
+    foreach ($plat in $platforms) {
+        $gfx.DrawImage($platformTexture, $plat.x, $plat.y, $plat.width, $plat.height)
+    }
+
+    $gfx.DrawImage($playerImage, $script:playerX, $script:playerY) # <-- Player
+    $gfx.Dispose() # dispose to make powershell less of a laggy mess
+
+    $e.Graphics.DrawImage($backBuffer, 0, 0) # draw to screen position 0,0 is also part of the "anti fucking epilepsi" thing

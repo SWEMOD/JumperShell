@@ -1,0 +1,39 @@
+== 2025-06-01 ==
+
+	Script;
+Built with Powershell ISE using Powershell 5.1 and built-in .NET
+	
+################################################################
+	Controls in JumperShell;
+A,D,Space
+	A>Left
+		D>Right
+			Space>Jump
+
+################################################################
+	Map loading in JumperShell;
+Loads .\levels csv files
+	Next level is loaded by reaching -40 height or greater
+	player is also respawned at startlocation 600,800
+
+	"AirZones" are also loaded the same way, however the
+	csv files are named "CurrentLevel" + "air.csv"
+
+################################################################
+	How to make levels in LevelCreator;
+
+Open LevelCreator
+	Right Click > Toggle Editor
+		Select level from dropdown
+		or
+		Right click next to dropdown > New Level
+		then
+		Select level from dropdown
+			Add Platform OR AirZone
+				Make changes to coordinates etc
+					Apply Changes
+
+	Load new level by selecting form dropdown
+	then pressing load level
+
+################################################################
